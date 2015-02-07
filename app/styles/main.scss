@@ -13,13 +13,13 @@ body {
     background-color: #eee;
     border-radius: 6px;
     padding: 60px;
+    h1 {
+        font-size: 60px;
+        line-height: 1;
+        letter-spacing: -1px;
+    }
 }
 
-.hero-unit h1 {
-    font-size: 60px;
-    line-height: 1;
-    letter-spacing: -1px;
-}
 
 .browsehappy {
     margin: 0.2em 0;

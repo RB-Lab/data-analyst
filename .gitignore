@@ -35,6 +35,7 @@ app/bower_components
 ### SASS ###
 ### SASS Ignores - "Sassy CSS" http://sass-lang.com/
 *.sass-cache
+app/css
 
 
 ### Yeoman ###

@@ -21,8 +21,8 @@ module.exports = function (grunt) {
         },
         watch: {
             styles: {
-                files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
-                tasks: ['copy:styles', 'autoprefixer']
+                files: ['<%= yeoman.app %>/styles/{,*/}*.scss'],
+                tasks: ['sass', 'copy:styles', 'autoprefixer']
             },
             livereload: {
                 options: {
@@ -30,6 +30,7 @@ module.exports = function (grunt) {
                 },
                 files: [
                     '<%= yeoman.app %>/*.html',
+                    '<%= yeoman.app %>/styles/{,*/}*.scss',
                     '.tmp/styles/{,*/}*.css',
                     '{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js',
                     '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
@@ -193,6 +194,13 @@ module.exports = function (grunt) {
                 }]
             }
         },
+        sass: {
+            dist: {
+                files: {
+                    '<%= yeoman.app %>/css/main.css': '<%= yeoman.app %>/styles/main.scss'
+                }
+            }
+        },
         cssmin: {
             // This task is pre-configured if you do not wish to use Usemin
             // blocks for your CSS. By default, the Usemin block from your
@@ -311,6 +319,7 @@ module.exports = function (grunt) {
         }
 
         grunt.task.run([
+            'sass',
             'clean:server',
             'concurrent:server',
             'autoprefixer',
