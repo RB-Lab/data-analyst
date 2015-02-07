@@ -26,12 +26,10 @@ require.config({
 require([
     'backbone',
     'underscore',
-    'views/menu',
+    'views/main-layout',
     'layoutmanager',
     'lib/resolver'
-], function (Backbone, _, MainMenu) {
-   // Backbone.history.start({pushState: true});
-    Backbone.history.start();
+], function (Backbone, _, MainLayout) {
 
     Backbone.Layout.configure({
         prefix: '../templates/',
@@ -43,5 +41,8 @@ require([
         }
     });
 
-    new MainMenu().render();
+    new MainLayout().render().once('afterRender', function(){
+//        Backbone.history.start({pushState: true});
+        Backbone.history.start();
+    });
 });

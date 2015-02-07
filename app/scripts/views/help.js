@@ -4,7 +4,7 @@ define(function(require, exports, module){
     var Backbone = require('backbone');
 
     var Help = Backbone.Layout.extend({
-        el: $('#container'),
+        el: '#container',
         template: 'help'
     });
     module.exports = Help;

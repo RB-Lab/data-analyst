@@ -18,7 +18,6 @@ define(function(require, exports, module){
         serialize: function() {
             return {items: this.items};
         },
-        el: $('#menu-container'),
         template: 'main-menu',
         events: {
             'click a': 'goto'
