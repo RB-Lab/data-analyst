@@ -22,8 +22,10 @@ require.config({
 });
 
 require([
-    'backbone'
+    'backbone',
+    'lib/resolver'
 ], function (Backbone) {
+   // Backbone.history.start({pushState: true});
     Backbone.history.start();
     console.log('Hello from Backbone!');
 });
