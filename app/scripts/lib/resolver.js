@@ -5,10 +5,6 @@ define(function(require, exports, module){
     var router = require('lib/router');
 
     var routesConfig = require('config/routes');
-    var MenuView = require('views/menu');
-
-    var menu = [];
-    var menuView = new MenuView();
 
     _.each(routesConfig, function(cfg){
         router.route(cfg.route, cfg.name, function(){
@@ -16,12 +12,7 @@ define(function(require, exports, module){
                 new View().render();
             });
         });
-        if (cfg.menuItem) {
-            menu.push({title: cfg.menuItem, href: cfg.route});
-        }
     });
-
-    menuView.render({items: menu});
 
     module.exports = router;
 });

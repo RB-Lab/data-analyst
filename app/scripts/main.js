@@ -23,9 +23,11 @@ require.config({
 
 require([
     'backbone',
+    'views/menu',
     'lib/resolver'
-], function (Backbone) {
+], function (Backbone, MainMenu) {
    // Backbone.history.start({pushState: true});
+    new MainMenu().render();
     Backbone.history.start();
     console.log('Hello from Backbone!');
 });
