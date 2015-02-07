@@ -17,17 +17,31 @@ require.config({
     paths: {
         jquery: '../bower_components/jquery/jquery',
         backbone: '../bower_components/backbone/backbone',
-        underscore: '../bower_components/underscore/underscore'
+        underscore: '../bower_components/underscore/underscore',
+        text: '../bower_components/requirejs-text/text',
+        layoutmanager: '../bower_components/layoutmanager/backbone.layoutmanager'
     }
 });
 
 require([
     'backbone',
+    'underscore',
     'views/menu',
+    'layoutmanager',
     'lib/resolver'
-], function (Backbone, MainMenu) {
+], function (Backbone, _, MainMenu) {
    // Backbone.history.start({pushState: true});
-    new MainMenu().render();
     Backbone.history.start();
-    console.log('Hello from Backbone!');
+
+    Backbone.Layout.configure({
+        prefix: '../templates/',
+        fetchTemplate: function(path){
+            var done = this.async();
+            require(['text!' + path + '.html'], function(tmpl){
+                done(_.template(tmpl));
+            });
+        }
+    });
+
+    new MainMenu().render();
 });

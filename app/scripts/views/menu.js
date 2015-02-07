@@ -1,12 +1,12 @@
 define(function(require, exports, module){
     'use strict';
 
-    var _ = require('underscore');
     var Backbone = require('backbone');
+    var _ = require('underscore');
     var router = require('lib/router');
     var routesConfig = require('config/routes');
 
-    var Menu = Backbone.View.extend({
+    var Menu = Backbone.Layout.extend({
         initialize: function(){
             this.items = [];
             _.each(routesConfig, function(cfg){
@@ -15,7 +15,11 @@ define(function(require, exports, module){
                 }
             }.bind(this));
         },
+        serialize: function() {
+            return {items: this.items};
+        },
         el: $('#menu-container'),
+        template: 'main-menu',
         events: {
             'click a': 'goto'
         },
@@ -23,10 +27,6 @@ define(function(require, exports, module){
             router.navigate(e.currentTarget.getAttribute('href'), {trigger: true});
             return false;
         },
-        template: _.template($('#menu').html()),
-        render: function () {
-            $(this.el).html(this.template({items: this.items}));
-        }
     });
 
     module.exports = Menu;

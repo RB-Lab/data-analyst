@@ -1,15 +1,11 @@
 define(function(require, exports, module){
     'use strict';
 
-    var _ = require('underscore');
     var Backbone = require('backbone');
 
-    var Help = Backbone.View.extend({
+    var Help = Backbone.Layout.extend({
         el: $('#container'),
-        template: _.template($('#help').html()),
-        render: function () {
-            $(this.el).html(this.template());
-        }
+        template: 'help'
     });
     module.exports = Help;
 });
