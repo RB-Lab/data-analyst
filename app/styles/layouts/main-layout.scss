@@ -1,0 +1,61 @@
+html, body, #main-container{
+    height: 100%
+}
+
+body {
+    margin: 0;
+    background: $main-bg-color;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: $main-color;
+}
+
+.browsehappy {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+#main-container{
+    $top-menu-height: 46px;
+
+    #main-menu{
+        margin: 0;
+        height: $top-menu-height;
+        padding-top: 14px;
+        background: darken($main-bg-color, 5);
+        border-bottom: 1px solid #BABABA;
+        box-sizing: border-box;
+        li{
+            display: inline-block;
+            list-style: none;
+            margin-right: 20px;
+            a{
+                color: lighten($main-color, 20);
+                text-decoration: none;
+                text-transform: uppercase;
+                &:hover{
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+
+    #data-menu{
+        @include all-0;
+        width: 20%;
+        right: auto;
+        top: $top-menu-height;
+        background: darken($main-bg-color, 3);
+        box-sizing: border-box;
+    }
+
+    #container{
+        @include all-0;
+        width: 80%;
+        left: auto;
+        top: $top-menu-height;
+        padding: 1em;
+        box-sizing: border-box;
+    }
+}
