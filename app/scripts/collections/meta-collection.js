@@ -1,6 +1,5 @@
-/*
+/**
  * @module collections/meta-collection -- adds to collections abilliti to store meta information
- *     unforunatelly, backbone
  */
 
 

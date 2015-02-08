@@ -3,17 +3,14 @@ define(function(require, exports, module){
 
     var Backbone = require('backbone');
     var MainMenu = require('views/menu');
-    var DataMenu = require('views/data-menu');
+    var DataSourceSection = require('views/data-source-section');
+    var SuiteSection = require('views/suite-section');
     var PopupLayout = require('views/popups/layout');
 
     var Menu = Backbone.Layout.extend({
         initialize: function(){
-            this.getView('#data-menu').on('requestPopup', function(popup){
-                var popupView = this.insertView(new PopupLayout({view: popup}));
-                popupView.render();
-                popupView.on('closeMe', function(){
-                    this.removeView(popupView);
-                }.bind(this));
+            this.getViews('#data-menu').each(function(view){
+                this.listenTo(view, 'requestPopup', this.openPopup);
             }.bind(this));
         },
         el: '#main-container',
@@ -21,7 +18,17 @@ define(function(require, exports, module){
         eventBus: {},
         views: {
             '#main-menu': new MainMenu(),
-            '#data-menu': new DataMenu()
+            '#data-menu': [
+                new DataSourceSection(),
+                new SuiteSection()
+            ]
+        },
+        openPopup: function(popup){
+            var popupView = this.insertView(new PopupLayout({view: popup}));
+            popupView.render();
+            popupView.on('closeMe', function(){
+                this.removeView(popupView);
+            }.bind(this));
         }
     });
 
