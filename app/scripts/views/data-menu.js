@@ -7,7 +7,7 @@ define(function(require, exports, module){
         template: 'data-menu',
         events: {
             'click #set-data-source': function(){
-                this.trigger('requestPopup', 'setDataSource');
+                this.trigger('requestPopup', 'views/popups/set-data-source');
             }
         },
         serialize: function(){

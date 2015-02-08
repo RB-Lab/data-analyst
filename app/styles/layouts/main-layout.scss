@@ -48,6 +48,7 @@ body {
         top: $top-menu-height;
         background: darken($main-bg-color, 3);
         box-sizing: border-box;
+        padding: 0 10px;
     }
 
     #container{

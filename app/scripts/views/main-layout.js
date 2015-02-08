@@ -4,12 +4,17 @@ define(function(require, exports, module){
     var Backbone = require('backbone');
     var MainMenu = require('views/menu');
     var DataMenu = require('views/data-menu');
+    var PopupLayout = require('views/popups/layout');
 
     var Menu = Backbone.Layout.extend({
         initialize: function(){
-            this.views['#data-menu'].on('requestPopup', function(popup){
-
-            });
+            this.getView('#data-menu').on('requestPopup', function(popup){
+                var popupView = this.insertView(new PopupLayout({view: popup}));
+                popupView.render();
+                popupView.on('closeMe', function(){
+                    this.removeView(popupView);
+                }.bind(this));
+            }.bind(this));
         },
         el: '#main-container',
         template: 'main-layout',

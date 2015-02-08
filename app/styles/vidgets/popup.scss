@@ -1,0 +1,33 @@
+.popup-bcg{
+    @include all-0;
+    position: fixed;
+    background: rgba(25, 25, 25, 0.5);
+    .popup{
+        @include all-0;
+        width: 60%;
+        max-height: 60%;
+        min-height: 160px;
+        margin: 20% auto;
+        bottom: auto;
+        background: $main-bg-color;
+        .popup-closer{
+            float: right;
+            margin: 10px;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            border: 1px solid #E8E8E8;
+            background: #8C8C8C;
+            text-align: center;
+            padding-top: 10px;
+            line-height: 0;
+            box-sizing: border-box;
+            cursor: pointer;
+            color: #fff;
+            box-shadow: 0 0 6px rgba(17, 17, 17, 0.53);
+        }
+        .popup-container{
+            padding: 10px
+        }
+    }
+}
