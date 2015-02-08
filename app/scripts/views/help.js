@@ -6,6 +6,8 @@ define(function(require, exports, module){
     var Help = Backbone.Layout.extend({
         el: '#container',
         template: 'help'
+        // TODO render help page from markdown (see also templates/help.html TODO note)
+        // hypothesis: use serialize method for it
     });
     module.exports = Help;
 });
