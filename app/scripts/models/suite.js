@@ -1,12 +1,21 @@
 define(function(require, exports, module){
     'use strict';
 
+    var _ = require('underscore');
     var Backbone = require('backbone');
     var lang = require('lib/i18n/en');
+    var storage = require('lib/storage');
 
     var Suite = Backbone.Model.extend({
 
         initialize: function(){
+
+            var suite = storage.getItem('suite');
+            if (suite) {
+                _.each(suite, function(value, key){
+                    this.set(key, value);
+                }, this);
+            }
 
             this.on('sync', function(){
                 this.ok();
@@ -26,13 +35,30 @@ define(function(require, exports, module){
 
         },
 
-        // TODO overide sync method to:
-        //      - check if it GET and then if suite of this name is stored in LS
-        //      - if SAVE - save it to LS
-        // TODO add LS abstraction layer
-        sync: function(){
-            this.set('state', 'loading');
-            Backbone.Model.prototype.sync.apply(this, arguments);
+        /**
+         * loads suite form remote and save it to local storage
+         * @overrides
+         */
+
+        sync: function(method){
+            if (method === 'read') {
+                this.set('state', 'loading');
+                Backbone.Model.prototype.sync.apply(this, arguments);
+            } else if (method === 'create' || method === 'update') {
+                storage.setItem('suite', this);
+            }
+        },
+
+        /**
+         * remove service attributes (state,loadingError, etc.) do not forget to add it here
+         * if you'll add them to model.
+         * @overrides
+         */
+        toJSON: function(){
+            var value = _.clone(this.attributes);
+            delete value.state;
+            delete value.loadingError;
+            return value;
         },
 
         ok: function(){

@@ -12,6 +12,9 @@ define(function(require, exports, module){
         events: {
             'click #set-suite': function(){
                 this.trigger('requestPopup', 'views/popups/set-suite');
+            },
+            'click #save-suite': function(){
+                suite.save();
             }
         },
         serialize: function(){

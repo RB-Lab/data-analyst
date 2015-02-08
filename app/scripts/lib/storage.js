@@ -4,9 +4,6 @@ define(function(require, exports, module){
 
     var storage = {
         setItem: function(name, value){
-            if (value.toJSON) {
-                return window.localStorage.setItem(name, value.toJSON());
-            }
             try {
                 window.localStorage.setItem(name, window.JSON.stringify(value));
             } catch (ignore) {
