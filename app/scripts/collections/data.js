@@ -4,14 +4,21 @@ define(function(require, exports, module){
     var Backbone = require('backbone');
     var Metacollection = require('collections/meta-collection');
     var lang = require('lib/i18n/en');
+    var storage = require('lib/storage');
 
     var Data = Metacollection.extend({
 
         initialize: function(){
 
+            this.url = storage.getItem('dataSource') || '';
+            if (this.url) {
+                this.fetch();
+            }
+
             this.on('sync', function(){
                 if (this.models.length){
                     this.ok();
+                    storage.setItem('dataSource', this.url);
                 } else {
                     this.meta('dataSourceError', lang.dataSourceErrors.wrongData);
                     this.meta('state', 'error');
