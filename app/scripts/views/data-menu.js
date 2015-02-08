@@ -7,6 +7,8 @@ define(function(require, exports, module){
     var Home = Backbone.Layout.extend({
         initialize: function(){
             this.listenTo(analysisModel, 'change:dataSource', this.render);
+            this.listenTo(analysisModel, 'change:dataSourceError', this.render);
+            this.listenTo(analysisModel, 'change:suite', this.render);
         },
         template: 'data-menu',
         events: {
@@ -15,7 +17,11 @@ define(function(require, exports, module){
             }
         },
         serialize: function(){
-            return {dataSource: analysisModel.get('dataSource'), suite: analysisModel.get('suite')};
+            return {
+                dataSource: analysisModel.get('dataSource') || '',
+                dataSourceError: analysisModel.get('dataSourceError'),
+                suite: analysisModel.get('suite')
+            };
         }
     });
 

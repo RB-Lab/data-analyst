@@ -49,6 +49,11 @@ body {
         background: darken($main-bg-color, 3);
         box-sizing: border-box;
         padding: 0 10px;
+        .error{
+            color: #7c0000;
+            font-size: smaller;
+            font-weight: bold
+        }
     }
 
     #container{

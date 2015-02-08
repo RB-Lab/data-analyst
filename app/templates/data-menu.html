@@ -1,5 +1,6 @@
 <h4>Data source</h4>
-<p><%= dataSource %></p>
+<p><%= dataSource.replace(/\//g, '/&#8203;') %></p>
+<p class="error"><%= dataSourceError %></p>
 <button id="set-data-source">Set</button>
 <hr>
 <h4>Stats suite</h4>

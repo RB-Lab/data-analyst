@@ -15,7 +15,7 @@ define(function(require, exports, module){
                 return;
             }
 
-            analysisModel.set('dataSource', source);
+            analysisModel.setDataSource(source);
             this.trigger('closeMe');
         },
         serialize: function(){
