@@ -2,7 +2,7 @@ define(function(require, exports, module){
     'use strict';
 
     var Backbone = require('backbone');
-    var analysisModel = require('models/analysis');
+    var data = require('collections/data');
 
     var Home = Backbone.Layout.extend({
         template: 'popups/set-data-source',
@@ -15,11 +15,12 @@ define(function(require, exports, module){
                 return;
             }
 
-            analysisModel.setDataSource(source);
+            data.url = source;
+            data.fetch();
             this.trigger('closeMe');
         },
         serialize: function(){
-            return {dataSource: analysisModel.get('dataSource')};
+            return {dataSource: data.url};
         }
     });
 

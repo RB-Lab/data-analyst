@@ -9,7 +9,7 @@ define(function(require, exports, module){
         initialize: function(){
 
             this.on('sync', function(){
-                this.set('state', 'ok');
+                this.ok();
             }, this);
 
             this.on('error', function(suite, e){
@@ -22,6 +22,8 @@ define(function(require, exports, module){
                 this.set('state', 'error');
             }, this);
 
+            this.ok();
+
         },
 
         // TODO overide sync method to:
@@ -33,9 +35,10 @@ define(function(require, exports, module){
             Backbone.Model.prototype.sync.apply(this, arguments);
         },
 
-        urlRoot: '',
-        state: 'ok',
-        loadingError: ''
+        ok: function(){
+            this.set('loadingError', '');
+            this.set('state', 'ok');
+        }
 
     });
 

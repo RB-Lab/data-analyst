@@ -1,11 +1,16 @@
-<h4>Data source</h4>
-<p><%= dataSource.replace(/\//g, '/&#8203;') %></p>
-<p class="error"><%= dataSourceError %></p>
-<button id="set-data-source">Set</button>
+<div id="data-source-section" class="<%= dataSourceState %>">
+    <h4>Data source</h4>
+    <p><%= dataSource.replace(/\//g, '/&#8203;') %></p>
+    <p class="error"><%= dataSourceError %></p>
+    <button id="set-data-source">Set</button>
+</div>
 <hr>
-<h4>Stats suite</h4>
-<!-- TODO add status tag and loader etc -->
-<h5><%= suite %></h5>
-<p class="error"><%= suiteLoadingError %></p>
-<button id="set-suite">Load</button>
-<button id="save-suite">Save</button>
+<div id="suite-section" class="<%= suiteState %>">
+    <h4>Stats suite</h4>
+    <!-- TODO add status tag and loader etc -->
+    <h5><%= suite %></h5>
+    <p class="error"><%= suiteLoadingError %></p>
+    <button id="set-suite">Load</button>
+    <button id="save-suite">Save</button>
+</div>
+
