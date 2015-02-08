@@ -3,13 +3,13 @@ define(function(require, exports, module){
 
     var Backbone = require('backbone');
     var analysisModel = require('models/analysis');
+    var suite = require('models/suite');
 
     var Home = Backbone.Layout.extend({
         initialize: function(){
             this.listenTo(analysisModel, 'change:dataSource', this.render);
             this.listenTo(analysisModel, 'change:dataSourceError', this.render);
-            this.listenTo(analysisModel, 'change:suite', this.render);
-            this.listenTo(analysisModel, 'change:suitLoadingError', this.render);
+            this.listenTo(suite, 'change:state', this.render);
         },
         template: 'data-menu',
         events: {
@@ -24,8 +24,8 @@ define(function(require, exports, module){
             return {
                 dataSource: analysisModel.get('dataSource') || '',
                 dataSourceError: analysisModel.get('dataSourceError'),
-                suite: analysisModel.get('suite'),
-                suitLoadingError: analysisModel.get('suitLoadingError'),
+                suite: suite.get('name'),
+                suiteLoadingError: suite.get('loadingError'),
             };
         }
     });

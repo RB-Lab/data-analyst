@@ -11,7 +11,7 @@ define(function(require, exports, module){
             404: 'Can\'t find specified URL',
             500: 'Error on data server'
         },
-        suitLoadingError: {
+        suiteLoadingError: {
             unknown: 'Error occured while loading specified URL',
             401: 'This suite location provided only for authorised users',
             403: 'This suite location is forbidden',

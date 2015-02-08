@@ -2,7 +2,7 @@ define(function(require, exports, module){
     'use strict';
 
     var Backbone = require('backbone');
-    var analysisModel = require('models/analysis');
+    var suite = require('models/suite');
 
     var Home = Backbone.Layout.extend({
         template: 'popups/set-suite',
@@ -15,7 +15,8 @@ define(function(require, exports, module){
                 return;
             }
 
-            analysisModel.loadSuite(url);
+            suite.urlRoot = url;
+            suite.fetch();
             this.trigger('closeMe');
         }
     });

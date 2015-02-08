@@ -15,6 +15,7 @@ define(function(require, exports, module){
         },
         template: 'popups/layout',
         events: {
+            // TODO close on [esc]
             'click .popup-closer': function(){
                 this.trigger('closeMe');
             }
