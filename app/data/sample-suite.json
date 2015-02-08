@@ -1,0 +1,20 @@
+{
+	"name": "GitHub sample stats",
+	"sections": [
+		{
+			"name": "Repos stats",
+			"charts": [
+				{
+					"type": "bar",
+					"xAxis": {
+						"title": "repos"
+					},
+					"yAxis": {
+						"title": "stars"
+					}
+				}
+			]
+		}
+
+	]
+}

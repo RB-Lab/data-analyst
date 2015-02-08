@@ -33,7 +33,26 @@ define(function(require, exports, module){
                 }.bind(this)
             });
         },
+        loadSuite: function(url){
+            // TODO add loading states (see also in data-menu.html)
+            $.ajax({
+                dataType: 'json',
+                url: url,
+                success: function (suite){
+                    console.log(suite);
+                }.bind(this),
+                error: function(e){
+                    // TODO make generic HTTP errors and common error handler
+                    if (lang.suitLoadingError[e.status]) {
+                        this.set('suitLoadingError', lang.suitLoadingError[e.status]);
+                    } else {
+                        this.set('suitLoadingError', lang.suitLoadingError.unknown);
+                    }
+                }.bind(this)
+            });
+        },
         dataSourceError: '',
+        suitLoadingError: '',
         data: null,
         suite: null
     });

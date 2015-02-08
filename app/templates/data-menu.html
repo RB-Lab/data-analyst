@@ -4,6 +4,8 @@
 <button id="set-data-source">Set</button>
 <hr>
 <h4>Stats suite</h4>
+<!-- TODO add status tag and loader etc -->
 <h5><%= suite ? suite.name : '' %></h5>
+<p class="error"><%= suitLoadingError %></p>
 <button id="set-suite">Load</button>
 <button id="save-suite">Save</button>
