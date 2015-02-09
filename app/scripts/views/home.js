@@ -25,11 +25,14 @@ define(function(require, exports, module){
             this.renderSuite();
         },
         renderSuite: function(){
+            if(!suite.get('charts')){
+                return;
+            }
             this.setTitle();
             this.removeView('');
-            suite.get('charts').each(function(chart){
+            suite.get('charts').each(function(chart, i){
                 // FIXME this not works on suite sync!!!
-                this.insertView(new ChartThumb({chart: chart}));
+                this.insertView(new ChartThumb({chart: chart, chatNumber: i}));
             }.bind(this));
         },
 

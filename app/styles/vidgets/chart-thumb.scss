@@ -1,8 +1,15 @@
 .chart-thumb{
+    position: relative;
     height: 300px;
     width: 300px;
     background: #FFF7E3;
     border: 1px solid #C7B29D;
     display: inline-block;
-    margin-right: 10px
+    margin-right: 10px;
+    cursor: pointer;
+    &:after{ // HACK this element here to supress Highcharts event interception
+        content: ' ';
+        @include all-0();
+        z-index: 1
+    }
 }

@@ -13,7 +13,10 @@ require.config({
             ],
             exports: 'Backbone'
         },
-        highcharts: ['jquery']
+        highcharts: {
+            deps: ['jquery'],
+            exports: 'Highcharts'
+        }
     },
     paths: {
         jquery: '../bower_components/jquery/jquery',

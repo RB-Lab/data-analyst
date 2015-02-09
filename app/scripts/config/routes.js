@@ -13,6 +13,11 @@ define(function(require, exports, module){
             route: 'help',
             view: 'views/help',
             menuItem: 'Help'
+        },
+        {
+            name: 'chart',
+            route: 'chart/:id',
+            view: 'views/chart'
         }
     ];
 
