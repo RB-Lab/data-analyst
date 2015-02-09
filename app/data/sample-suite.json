@@ -1,8 +1,9 @@
 {
-	"name": "GitHub sample stats",
+	"name": "sample-suite-1",
+	"title": "GitHub sample stats",
 	"sections": [
 		{
-			"name": "Repos stats",
+			"title": "Repos stats",
 			"charts": [
 				{
 					"type": "bar",
