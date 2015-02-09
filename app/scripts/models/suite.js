@@ -3,6 +3,7 @@ define(function(require, exports, module){
 
     var _ = require('underscore');
     var Backbone = require('backbone');
+    var Charts = require('collections/charts');
     var lang = require('lib/i18n/en');
     var storage = require('lib/storage');
 
@@ -13,11 +14,15 @@ define(function(require, exports, module){
             var suite = storage.getItem('suite');
             if (suite) {
                 _.each(suite, function(value, key){
+                    if (key === 'charts') {
+                        return this.set('charts', new Charts(value));
+                    }
                     this.set(key, value);
                 }, this);
             }
 
             this.on('sync', function(){
+                this.set('charts', new Charts(this.get('charts')));
                 this.ok();
             }, this);
 
@@ -45,6 +50,7 @@ define(function(require, exports, module){
                 this.set('state', 'loading');
                 Backbone.Model.prototype.sync.apply(this, arguments);
             } else if (method === 'create' || method === 'update') {
+                // TODO add 'saved' notification
                 storage.setItem('suite', this);
             }
         },

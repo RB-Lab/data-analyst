@@ -1,21 +1,42 @@
 {
-	"name": "sample-suite-1",
-	"title": "GitHub sample stats",
-	"sections": [
-		{
-			"title": "Repos stats",
-			"charts": [
-				{
-					"type": "bar",
-					"xAxis": {
-						"title": "repos"
-					},
-					"yAxis": {
-						"title": "stars"
-					}
-				}
-			]
-		}
-
-	]
+    "name": "sample-suite-1",
+    "title": "GitHub sample stats-2",
+    "charts": [
+        {
+            "title": "stargazers",
+            "type": "bar",
+            "xAxis": {
+                "title": "repos",
+                "attribute": "name"
+            },
+            "yAxis": {
+                "title": "stars",
+                "attribute": "stargazers_count"
+            }
+        },
+        {
+            "title": "forks",
+            "type": "bar",
+            "xAxis": {
+                "title": "repos",
+                "attribute": "name"
+            },
+            "yAxis": {
+                "title": "forks",
+                "attribute": "forks"
+            }
+        },
+        {
+            "title": "size",
+            "type": "bar",
+            "xAxis": {
+                "title": "repos",
+                "attribute": "name"
+            },
+            "yAxis": {
+                "title": "size, kib",
+                "attribute": "size"
+            }
+        }
+    ]
 }

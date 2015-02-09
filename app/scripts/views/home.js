@@ -1,10 +1,9 @@
 define(function(require, exports, module){
     'use strict';
 
-    var _ = require('underscore');
     var Backbone = require('backbone');
     var suite = require('models/suite');
-    var data = require('collections/data');
+    var ChartThumb = require('views/chart-thumb');
 
     var Home = Backbone.Layout.extend({
         el: '#container',
@@ -23,12 +22,15 @@ define(function(require, exports, module){
                 this.renderSuite();
             });
             this.listenTo(suite, 'change:title', this.setTitle);
+            this.renderSuite();
         },
         renderSuite: function(){
             this.setTitle();
-            _.each(suite.sections, function(){
-
-            });
+            this.removeView('');
+            suite.get('charts').each(function(chart){
+                // FIXME this not works on suite sync!!!
+                this.insertView(new ChartThumb({chart: chart}));
+            }.bind(this));
         },
 
         setTitle: function(){
