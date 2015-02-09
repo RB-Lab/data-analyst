@@ -4,6 +4,7 @@ define(function(require, exports, module){
     var Backbone = require('backbone');
     var data = require('collections/data');
     var router = require('lib/router');
+    var suite2highcharts = require('lib/suite2highcharts');
 
     var Help = Backbone.Layout.extend({
         tagName: 'div',
@@ -24,35 +25,7 @@ define(function(require, exports, module){
             this.drawChart(options.chart);
         },
         drawChart: function(chart){
-            // TODO make a convertor lib ('cause we'll need it when creatibg big charts)
-            var chartConfig = {
-                chart: {
-                    type: chart.get('type')
-                },
-                title: {
-                    text: chart.get('title')
-                },
-                xAxis: {
-                    title: {
-                        text: chart.get('xAxis').title
-                    },
-                    categories: data.map(function(item){
-                        return item.get(chart.get('xAxis').attribute);
-                    })
-                },
-                yAxis: {
-                    title: {
-                        text: chart.get('yAxis').title
-                    }
-                },
-                series: [{
-                    name: chart.get('yAxis').title,
-                    data: data.map(function(item){
-                        return item.get(chart.get('yAxis').attribute);
-                    })
-                }]
-            };
-            this.$el.highcharts(chartConfig);
+            this.$el.highcharts(suite2highcharts.convert(chart));
         }
     });
     module.exports = Help;
