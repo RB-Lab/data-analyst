@@ -10,7 +10,6 @@ define(function(require, exports, module){
         el: '#container',
         template: 'chart',
         initialize: function(options){
-            // TODO add data sync handler
             // TODO check on empty suite
             this.on('afterRender', function(){
                 this.drawChart(suite.get('charts').at(options.id));
@@ -21,7 +20,7 @@ define(function(require, exports, module){
         },
         drawChart: function(chart){
             if (!chart) {
-                return;
+                return; // TODO add 404 page
             }
             this.$el.find('#chart').highcharts(suite2highcharts.convert(chart));
         }
