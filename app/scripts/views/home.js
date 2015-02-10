@@ -6,7 +6,6 @@ define(function(require, exports, module){
     var ChartThumb = require('views/chart-thumb');
 
     var Home = Backbone.Layout.extend({
-        el: '#container',
         template: 'home',
         events: {
             'dblclick .title': function(){

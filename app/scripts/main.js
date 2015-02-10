@@ -33,10 +33,10 @@ require([
     'backbone',
     'underscore',
     'views/main-layout',
-    'layoutmanager',
     'lib/resolver',
+    'layoutmanager',
     'highcharts'
-], function (Backbone, _, MainLayout) {
+], function (Backbone, _, MainLayout, resolver) {
 
     Backbone.Layout.configure({
         prefix: '../templates/',
@@ -48,8 +48,10 @@ require([
         }
     });
 
-    new MainLayout().render().once('afterRender', function(){
+    var mainLayout = new MainLayout().render().once('afterRender', function(){
 //        Backbone.history.start({pushState: true});
         Backbone.history.start();
     });
+
+    resolver.injectMainLayout(mainLayout);
 });

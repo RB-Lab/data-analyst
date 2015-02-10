@@ -6,6 +6,8 @@ define(function(require, exports, module){
 
     var routesConfig = require('config/routes');
 
+    var mainLayout = null;
+
     _.each(routesConfig, function(cfg){
         router.route(cfg.route, cfg.name, function(){
 
@@ -16,10 +18,14 @@ define(function(require, exports, module){
             });
 
             require([cfg.view], function(View){
-                new View(params).render();
+                mainLayout.changePage(new View(params));
             });
         });
     });
 
-    module.exports = router;
+    module.exports = {
+        injectMainLayout: function(layout){
+            mainLayout = layout;
+        }
+    };
 });
