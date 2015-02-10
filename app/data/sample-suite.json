@@ -3,8 +3,8 @@
     "title": "GitHub sample stats-2",
     "charts": [
         {
-            "title": "stargazers",
-            "type": "bar",
+            "title": "Stargazers",
+            "type": "column",
             "xAxis": {
                 "title": "repos",
                 "attribute": "name"
@@ -15,7 +15,7 @@
             }
         },
         {
-            "title": "forks",
+            "title": "Forks",
             "type": "bar",
             "xAxis": {
                 "title": "repos",
@@ -27,8 +27,8 @@
             }
         },
         {
-            "title": "size",
-            "type": "bar",
+            "title": "Size",
+            "type": "line",
             "xAxis": {
                 "title": "repos",
                 "attribute": "name"
@@ -37,6 +37,18 @@
                 "title": "size, kib",
                 "attribute": "size"
             }
+        },
+        {
+            "xAxis": {
+                "title": "stars",
+                "attribute": "stargazers_count"
+            },
+            "yAxis": {
+                "title": "size",
+                "attribute": "size"
+            },
+            "title": "Stars-size corellation",
+            "type": "scatter"
         }
     ]
 }
