@@ -24,7 +24,7 @@ define(function(require, exports, module){
                 xAxisAttriute: this.chart.get('xAxis').attribute,
                 yAxisTitle: this.chart.get('yAxis').title,
                 yAxisAttriute: this.chart.get('yAxis').attribute,
-                supportedTypes: ['bar', 'collumn', 'line', 'scatter']
+                supportedTypes: ['bar', 'column', 'line', 'scatter']
             };
         },
         deserialize: function(){
