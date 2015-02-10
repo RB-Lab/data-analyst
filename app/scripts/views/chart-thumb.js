@@ -25,7 +25,9 @@ define(function(require, exports, module){
             this.drawChart(options.chart);
         },
         drawChart: function(chart){
-            this.$el.highcharts(suite2highcharts.convert(chart));
+            var chartConfig = suite2highcharts.convert(chart);
+            chartConfig.legend = {enabled: false};
+            this.$el.highcharts(chartConfig);
         }
     });
     module.exports = Help;
