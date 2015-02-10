@@ -1,8 +1,26 @@
-// TODO implement actual grid system
-.col-6{
+*[class^="col-"]{
     float: left;
-    width: 50%
+    box-sizing: border-box;
+    @media only screen and (max-width: $small) {
+        &.not-for-small{
+            width: 100%;
+            float: none
+        }
+    }
 }
+
+@for $i from 1 through 12 {
+    .col-#{$i}{
+        width: $i * 100% / 12;
+    }
+}
+
+@for $i from 1 through 12 {
+    .skip-#{$i}{
+        margin-left: $i * 100% / 12;
+    }
+}
+
 .row:after{
     content: " ";
     display: block;
