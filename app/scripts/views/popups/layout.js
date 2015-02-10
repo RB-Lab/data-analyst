@@ -6,11 +6,14 @@ define(function(require, exports, module){
     var Home = Backbone.Layout.extend({
         initialize: function(options){
             require([options.view], function(View){
-                var view = new View();
+
+                var view = new View(options.params);
                 this.insertView('.popup-container', view).render();
+
                 view.on('closeMe', function(){
                     this.trigger('closeMe');
                 }.bind(this));
+
             }.bind(this));
         },
         template: 'popups/layout',

@@ -23,8 +23,8 @@ define(function(require, exports, module){
                 new SuiteSection()
             ]
         },
-        openPopup: function(popup){
-            var popupView = this.insertView(new PopupLayout({view: popup}));
+        openPopup: function(popup, params){
+            var popupView = this.insertView(new PopupLayout({view: popup, params: params}));
             popupView.render();
             popupView.on('closeMe', function(){
                 this.removeView(popupView);

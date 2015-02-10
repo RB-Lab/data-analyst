@@ -7,22 +7,26 @@ define(function(require, exports, module){
     var suite2highcharts = require('lib/suite2highcharts');
 
     var Help = Backbone.Layout.extend({
-        el: '#container',
         template: 'chart',
+        id: undefined,
+        events: {
+            dblclick: function(){
+                this.trigger('requestPopup', 'views/popups/edit-chart', {chart: this.id});
+            }
+        },
         initialize: function(options){
             // TODO check on empty suite
-            this.on('afterRender', function(){
-                this.drawChart(suite.get('charts').at(options.id));
-            });
-            data.on('sync', function(){
-                this.drawChart(suite.get('charts').at(options.id));
-            }.bind(this));
+            this.id = options.id;
+            this.chart = suite.get('charts').at(options.id);
+            this.listenTo(data, 'sync', this.drawChart);
+            this.listenTo(this.chart, 'update', this.drawChart);
+            this.on('afterRender', this.drawChart);
         },
-        drawChart: function(chart){
-            if (!chart) {
+        drawChart: function(){
+            if (!this.chart) {
                 return; // TODO add 404 page
             }
-            this.$el.find('#chart').highcharts(suite2highcharts.convert(chart));
+            this.$el.find('#chart').highcharts(suite2highcharts.convert(this.chart));
         }
     });
 

@@ -1,5 +1,6 @@
-@import "vars";
-@import "mixins";
+@import "common/vars";
+@import "common/mixins";
+@import "common/grid";
 
 @import "layouts/main-layout";
 

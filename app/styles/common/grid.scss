@@ -1,0 +1,10 @@
+// TODO implement actual grid system
+.col-6{
+    float: left;
+    width: 50%
+}
+.row:after{
+    content: " ";
+    display: block;
+    clear: both
+}
