@@ -14,6 +14,11 @@ define(function(require, exports, module){
             'blur .title': function(){
                 suite.set('title', this.$el.find('.title').text());
                 this.$el.find('.title').attr('contenteditable', false);
+            },
+            'click #add-chart': function(){
+                this.trigger('requestPopup',
+                             'views/popups/edit-chart',
+                             {chart: 'new'});
             }
         },
         initialize: function(){

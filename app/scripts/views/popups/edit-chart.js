@@ -2,19 +2,32 @@ define(function(require, exports, module){
     'use strict';
 
     var Backbone = require('backbone');
+    var router = require('lib/router');
     var suite = require('models/suite');
+    var Chart = require('models/chart');
 
     var Home = Backbone.Layout.extend({
         template: 'popups/edit-chart',
+        newFlag: false,
         events: {
             'click #apply-chart': function(){
                 this.deserialize();
+                if(this.newFlag){
+                    suite.get('charts').add(this.chart);
+                    this.newFlag = false;
+                    router.navigate('chart/' + (suite.get('charts').models.length - 1), {trigger: true});
+                }
                 this.trigger('closeMe');
                 this.chart.trigger('update');
             }
         },
         initialize: function(options){
-            this.chart = suite.get('charts').at(options.chart);
+            if(options.chart === 'new'){
+                this.chart = new Chart();
+                this.newFlag = true;
+            } else {
+                this.chart = suite.get('charts').at(options.chart);
+            }
         },
         serialize: function(){
             return {

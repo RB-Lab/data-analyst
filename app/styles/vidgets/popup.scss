@@ -2,6 +2,7 @@
     @include all-0;
     position: fixed;
     background: rgba(25, 25, 25, 0.5);
+    z-index: 10;
     .popup{
         @include all-0;
         width: 60%;
