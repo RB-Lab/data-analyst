@@ -28,7 +28,7 @@
         },
         {
             "title": "Size",
-            "type": "line",
+            "type": "column",
             "xAxis": {
                 "title": "repos",
                 "attribute": "name"

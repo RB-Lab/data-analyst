@@ -4,7 +4,8 @@ define(function(require, exports, module){
     var data = require('collections/data');
 
     module.exports.convert = function(chart){
-        return {
+
+        var config = {
             chart: {
                 type: chart.get('type')
             },
@@ -14,10 +15,7 @@ define(function(require, exports, module){
             xAxis: {
                 title: {
                     text: chart.get('xAxis').title
-                },
-                categories: data.map(function(item){
-                    return item.get(chart.get('xAxis').attribute);
-                })
+                }
             },
             yAxis: {
                 title: {
@@ -25,11 +23,27 @@ define(function(require, exports, module){
                 }
             },
             series: [{
-                name: chart.get('yAxis').title,
-                data: data.map(function(item){
-                    return item.get(chart.get('yAxis').attribute);
-                })
+                name: chart.get('yAxis').title
             }]
         };
+
+        if(chart.get('type') === 'scatter') {
+            config.series[0].data = data.map(function(item){
+                return [
+                    item.get(chart.get('xAxis').attribute),
+                    item.get(chart.get('yAxis').attribute)
+                ];
+            });
+            config.legend = {enabled: false};
+        } else {
+            config.series[0].data = data.map(function(item){
+                return item.get(chart.get('yAxis').attribute);
+            });
+            config.xAxis.categories = data.map(function(item){
+                return item.get(chart.get('xAxis').attribute);
+            });
+        }
+
+        return config;
     };
 });
