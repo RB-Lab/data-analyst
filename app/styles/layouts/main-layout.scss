@@ -104,7 +104,11 @@ body {
         overflow: auto;
         text-align: center;
         h2, #text{
-            text-align: left
+            text-align: left;
+            &:focus{
+                outline: none;
+                border-bottom: 1px solid lighten($main-color, 30)
+            }
         }
         @media only screen and (max-width: 830px){
             width: 65%;

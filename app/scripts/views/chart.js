@@ -15,18 +15,26 @@ define(function(require, exports, module){
             }
         },
         initialize: function(options){
-            // TODO check on empty suite
             this.id = options.id;
             this.chart = suite.get('charts').at(options.id);
             this.listenTo(data, 'sync', this.drawChart);
-            this.listenTo(this.chart, 'update', this.drawChart);
+            this.listenTo(suite, 'sync', function(){
+                this.chart = suite.get('charts').at(options.id);
+                this.drawChart();
+            });
+            if(this.chart){
+                this.listenTo(this.chart, 'update', this.drawChart);
+            }
             this.on('afterRender', this.drawChart);
         },
         drawChart: function(){
             if (!this.chart) {
-                return; // TODO add 404 page
+                this.$el.find('#chart').empty().hide();
+                this.$el.find('#404-chart').show();
+                return;
             }
-            this.$el.find('#chart').highcharts(suite2highcharts.convert(this.chart));
+            this.$el.find('#404-chart').hide();
+            this.$el.find('#chart').highcharts(suite2highcharts.convert(this.chart)).show();
         }
     });
 

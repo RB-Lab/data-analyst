@@ -9,7 +9,9 @@ define(function(require, exports, module){
         template: 'home',
         events: {
             'dblclick .title': function(){
-                this.$el.find('.title').attr('contenteditable', true);
+                var $title = this.$el.find('.title');
+                $title.attr('contenteditable', true);
+                $title.focus();
             },
             'blur .title': function(){
                 suite.set('title', this.$el.find('.title').text());

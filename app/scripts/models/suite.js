@@ -19,10 +19,15 @@ define(function(require, exports, module){
                     }
                     this.set(key, value);
                 }, this);
+            } else {
+                this.set('charts', new Charts());
+                this.set('title', 'New suite');
             }
 
             this.on('sync', function(){
-                this.set('charts', new Charts(this.get('charts')));
+                if(_.isArray(this.get('charts'))){
+                    this.set('charts', new Charts(this.get('charts')));
+                }
                 this.ok();
             }, this);
 
@@ -41,7 +46,7 @@ define(function(require, exports, module){
         },
 
         /**
-         * loads suite form remote and save it to local storage
+         * loads suite form remote or save it to local storage
          * @overrides
          */
 
