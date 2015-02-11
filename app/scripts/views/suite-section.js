@@ -15,6 +15,11 @@ define(function(require, exports, module){
             },
             'click #save-suite': function(){
                 suite.save();
+                // TODO add _normal_ notifications and use it for this purpose
+                this.$el.find('#save-suite').text('ok');
+                window.setTimeout(function(){
+                    this.$el.find('#save-suite').text('save');
+                }.bind(this), 500);
             }
         },
         serialize: function(){

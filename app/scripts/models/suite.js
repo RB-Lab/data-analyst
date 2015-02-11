@@ -55,7 +55,6 @@ define(function(require, exports, module){
                 this.set('state', 'loading');
                 Backbone.Model.prototype.sync.apply(this, arguments);
             } else if (method === 'create' || method === 'update') {
-                // TODO add 'saved' notification
                 storage.setItem('suite', this);
             }
         },
