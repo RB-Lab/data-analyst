@@ -24,6 +24,7 @@ define(function(require, exports, module){
         initialize: function(){
             this.listenTo(suite, 'sync', function(){
                 this.renderSuite();
+                this.render();
             });
             this.listenTo(suite, 'change:title', this.setTitle);
             this.renderSuite();
@@ -32,12 +33,12 @@ define(function(require, exports, module){
             if(!suite.get('charts')){
                 return;
             }
-            this.setTitle();
             this.removeView('');
+            var views = [];
             suite.get('charts').each(function(chart, i){
-                // FIXME this not works on suite sync!!!
-                this.insertView(new ChartThumb({chart: chart, chatNumber: i}));
-            }.bind(this));
+                views.push(new ChartThumb({chart: chart, chatNumber: i}));
+            });
+            this.insertViews(views);
         },
 
         setTitle: function(){
