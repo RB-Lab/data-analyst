@@ -7,6 +7,13 @@ define(function(require, exports, module){
     var routesConfig = require('config/routes');
 
     var Menu = Backbone.Layout.extend({
+        template: 'main-menu',
+        events: {
+            'click a': 'goto',
+            'click #data-menu-icon': function(){
+                $('#data-menu').toggleClass('active');
+            }
+        },
         initialize: function(){
             this.items = [];
             _.each(routesConfig, function(cfg){
@@ -17,10 +24,6 @@ define(function(require, exports, module){
         },
         serialize: function() {
             return {items: this.items};
-        },
-        template: 'main-menu',
-        events: {
-            'click a': 'goto'
         },
         goto: function(e){
             router.navigate(e.currentTarget.getAttribute('href'), {trigger: true});

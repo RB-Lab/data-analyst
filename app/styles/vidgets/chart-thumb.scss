@@ -5,7 +5,7 @@
     background: #FFF7E3;
     border: 1px solid #C7B29D;
     display: inline-block;
-    margin-right: 10px;
+    margin: 0 10px 20px 0;
     cursor: pointer;
     &:after{ // HACK this element here to supress Highcharts event interception
         content: ' ';

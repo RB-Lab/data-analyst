@@ -15,7 +15,6 @@ define(function(require, exports, module){
         },
         el: '#main-container',
         template: 'main-layout',
-        eventBus: {},
         views: {
             '#main-menu': new MainMenu(),
             '#data-menu': [
