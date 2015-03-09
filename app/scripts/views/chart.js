@@ -4,7 +4,7 @@ define(function(require, exports, module){
     var Backbone = require('backbone');
     var data = require('collections/data');
     var suite = require('models/suite');
-    var suite2highcharts = require('lib/suite2highcharts');
+    var driver = require('lib/drivers/highcharts');
 
     var Help = Backbone.Layout.extend({
         template: 'chart',
@@ -34,7 +34,7 @@ define(function(require, exports, module){
                 return;
             }
             this.$el.find('#404-chart').hide();
-            this.$el.find('#chart').highcharts(suite2highcharts.convert(this.chart)).show();
+            driver.drawChart(this.$el.find('#chart'), this.chart);
         }
     });
 

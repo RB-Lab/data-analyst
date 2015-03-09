@@ -4,7 +4,7 @@ define(function(require, exports, module){
     var Backbone = require('backbone');
     var data = require('collections/data');
     var router = require('lib/router');
-    var suite2highcharts = require('lib/suite2highcharts');
+    var driver = require('lib/drivers/highcharts');
 
     var Help = Backbone.Layout.extend({
         tagName: 'div',
@@ -25,9 +25,7 @@ define(function(require, exports, module){
             this.drawChart(options.chart);
         },
         drawChart: function(chart){
-            var chartConfig = suite2highcharts.convert(chart);
-            chartConfig.legend = {enabled: false};
-            this.$el.highcharts(chartConfig);
+            driver.drawThumb(this.$el, chart);
         }
     });
     module.exports = Help;

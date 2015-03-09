@@ -3,7 +3,7 @@ define(function(require, exports, module){
 
     var data = require('collections/data');
 
-    module.exports.convert = function(chart){
+    function convertConfig(chart){
 
         var config = {
             chart: {
@@ -45,5 +45,15 @@ define(function(require, exports, module){
         }
 
         return config;
+    }
+
+    module.exports.drawChart = function(el, chartConfig){
+        el.highcharts(convertConfig(chartConfig)).show();
+    };
+
+    module.exports.drawThumb = function(el, chartConfig){
+        chartConfig = convertConfig(chartConfig);
+        chartConfig.legend = {enabled: false};
+        el.highcharts(chartConfig);
     };
 });
